@@ -370,6 +370,9 @@ grafana:
             "weekStart": ""
           }
 
+kubelet:
+  enabled: true
+
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
@@ -388,4 +391,4 @@ prometheus:
 alertmanager:
   alertmanagerSpec:
     # 3. TEST CHANGE: Scale this from 1 to 2 to see pods being created
-    replicas: 5
+    replicas: 1
