@@ -373,6 +373,7 @@ grafana:
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
     # 2. TEST CHANGE: Change this value to see it appear in the Prometheus UI
     externalLabels:
       cluster_env: "minikube-dev"

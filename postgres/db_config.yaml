@@ -10,10 +10,6 @@ spec:
   # --- Add this section ---
   monitoring:
     enablePodMonitor: true
-  # -----------------------
-  podMonitor:
-    additionalLabels:
-      release: prometheus-stack
   storage:
     size: 500Mi
   resources:
