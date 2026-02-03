@@ -10,11 +10,10 @@ spec:
   # --- Add this section ---
   monitoring:
     enablePodMonitor: true
-    podMonitorMetadata:
-      labels:
-        release: prometheus-stack # Match this to your Prometheus 'podMonitorSelector'
   # -----------------------
-
+  podMonitor:
+    additionalLabels:
+      release: prometheus-stack
   storage:
     size: 500Mi
   resources:
