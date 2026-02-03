@@ -1,0 +1,29 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: minikube-db
+  namespace: default
+spec:
+  teamId: "test-team"
+  numberOfInstances: 2   # One leader, one replica to test HA
+  
+  postgresql:
+    version: "16"        # Using the latest stable version
+    
+  volume:
+    size: 500Mi          # Tiny disk for testing
+    # No storageClass specified = uses Minikube's default (standard)
+    
+  resources:
+    requests:
+      cpu: 100m          # Very low CPU (0.1 core)
+      memory: 200Mi
+    limits:
+      cpu: 500m
+      memory: 500Mi
+
+  users:
+    test_user: []        # A standard user
+    
+  databases:
+    test_db: test_user   # Creates a DB called 'test_db' owned by 'test_user'
