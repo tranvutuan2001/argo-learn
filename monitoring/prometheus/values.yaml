@@ -5,7 +5,7 @@ grafana:
     type: NodePort
   # 1. TEST CHANGE: Change this label to see ArgoCD detect a metadata change
   podLabels:
-    gitops-status: "all-good"
+    gitops-status: "all-bad"
 
 prometheus:
   prometheusSpec:
