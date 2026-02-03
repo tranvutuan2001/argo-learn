@@ -1,29 +1,31 @@
-apiVersion: "acid.zalan.do/v1"
-kind: postgresql
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
 metadata:
   name: minikube-db
   namespace: default
 spec:
-  teamId: "test-team"
-  numberOfInstances: 2   # One leader, one replica to test HA
+  instances: 2
   
-  postgresql:
-    version: "16"        # Using the latest stable version
-    
-  volume:
-    size: 500Mi          # Tiny disk for testing
-    # No storageClass specified = uses Minikube's default (standard)
-    
+  # Image versioning
+  imageName: ghcr.io/cloudnative-pg/postgresql:16
+
+  # Storage configuration
+  storage:
+    size: 500Mi
+    # If storageClass is omitted, it uses the default (standard on Minikube)
+
+  # Resource management
   resources:
     requests:
-      cpu: 100m          # Very low CPU (0.1 core)
+      cpu: 100m
       memory: 200Mi
     limits:
       cpu: 500m
       memory: 500Mi
 
-  users:
-    test_user: []        # A standard user
-    
-  databases:
-    test_db: test_user   # Creates a DB called 'test_db' owned by 'test_user'
+  # Database and User setup
+  # CNPG handles this via bootstrap or separate Secret/SQL
+  bootstrap:
+    initdb:
+      database: test_db
+      owner: test_user
