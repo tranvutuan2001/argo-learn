@@ -1,6 +1,7 @@
 # Custom values for kube-prometheus-stack
 grafana:
   adminPassword: "1"
+  defaultDashboardsEnabled: false
   service:
     type: NodePort
   # 1. TEST CHANGE: Change this label to see ArgoCD detect a metadata change
