@@ -24,4 +24,4 @@ prometheus:
 alertmanager:
   alertmanagerSpec:
     # 3. TEST CHANGE: Scale this from 1 to 2 to see pods being created
-    replicas: 1
+    replicas: 5
