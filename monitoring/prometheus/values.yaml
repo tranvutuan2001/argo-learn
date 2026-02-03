@@ -3,11 +3,16 @@ grafana:
   adminPassword: "1"
   service:
     type: NodePort
+  # 1. TEST CHANGE: Change this label to see ArgoCD detect a metadata change
+  podLabels:
+    gitops-status: "all-good"
 
 prometheus:
   prometheusSpec:
-    # Essential for Minikube to find your custom ServiceMonitors
     serviceMonitorSelectorNilUsesHelmValues: false
+    # 2. TEST CHANGE: Change this value to see it appear in the Prometheus UI
+    externalLabels:
+      cluster_env: "minikube-dev"
     storageSpec:
       volumeClaimTemplate:
         spec:
@@ -15,3 +20,8 @@ prometheus:
           resources:
             requests:
               storage: 2Gi
+
+alertmanager:
+  alertmanagerSpec:
+    # 3. TEST CHANGE: Scale this from 1 to 2 to see pods being created
+    replicas: 1
