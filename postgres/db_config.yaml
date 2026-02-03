@@ -5,16 +5,15 @@ metadata:
   namespace: default
 spec:
   instances: 2
-  
-  # Image versioning
   imageName: ghcr.io/cloudnative-pg/postgresql:16
 
-  # Storage configuration
+  # --- Add this section ---
+  monitoring:
+    enablePodMonitor: true
+  # -----------------------
+
   storage:
     size: 500Mi
-    # If storageClass is omitted, it uses the default (standard on Minikube)
-
-  # Resource management
   resources:
     requests:
       cpu: 100m
@@ -22,9 +21,6 @@ spec:
     limits:
       cpu: 500m
       memory: 500Mi
-
-  # Database and User setup
-  # CNPG handles this via bootstrap or separate Secret/SQL
   bootstrap:
     initdb:
       database: test_db
